@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row g-4">
+
+    <div class="col-lg-3">
+        {% include "components/left_sidebar.html" %}
+    </div>
+
+    <div class="col-lg-6">
+
+        {% include "components/create_post.html" %}
+
+        {% for post in posts %}
+
+            {% include "components/post_card.html" %}
+
+        {% endfor %}
+
+    </div>
+
+    <div class="col-lg-3">
+        {% include "components/right_sidebar.html" %}
+    </div>
+
+</div>
+
+{% endblock %}

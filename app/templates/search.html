@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>
+
+Search Results
+
+</h2>
+
+<hr>
+
+{% if users %}
+
+    {% for user in users %}
+
+    <div class="card mb-3">
+
+        <div class="card-body">
+
+            <h4>
+
+                <a href="/profile/{{ user.id }}">
+
+                    {{ user.username }}
+
+                </a>
+
+            </h4>
+
+            <p>
+
+                {{ user.email }}
+
+            </p>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+{% else %}
+
+<p>
+
+No users found.
+
+</p>
+
+{% endif %}
+
+{% endblock %}

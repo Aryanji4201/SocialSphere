@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual Environment
+venv/
+.env
+
+# Flask
+instance/
+*.sqlite3
+
+# macOS
+.DS_Store
+
+# VS Code
+.vscode/
+
+# Uploads
+app/static/uploads/
+
+# Logs
+*.log
+
+# Pytest
+.pytest_cache/
+
+# Migrations cache
+*.pyc

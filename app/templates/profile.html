@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card shadow">
+
+    <div class="card-body text-center">
+
+        <img
+            src="https://ui-avatars.com/api/?name={{ profile.username }}"
+            class="rounded-circle mb-3">
+
+        <h2>{{ profile.username }}</h2>
+
+        <p>{{ profile.email }}</p>
+
+        <p>{{ profile.bio or "No bio yet." }}</p>
+
+        <div class="row text-center my-4">
+
+            <div class="col">
+
+                <h4>{{ profile.posts|length }}</h4>
+
+                <small>Posts</small>
+
+            </div>
+
+            <div class="col">
+
+                <h4>{{ profile.followers|length }}</h4>
+
+                <small>Followers</small>
+
+            </div>
+
+            <div class="col">
+
+                <h4>{{ profile.following|length }}</h4>
+
+                <small>Following</small>
+
+            </div>
+
+        </div>
+
+        {% if profile.id != current_user.id %}
+
+        <div class="d-flex justify-content-center gap-2">
+
+            <a
+                class="btn btn-primary"
+                href="/follow/{{ profile.id }}">
+
+                {% if profile.followers
+                    |selectattr("follower_id","equalto",current_user.id)
+                    |list|length %}
+
+                    Following
+
+                {% else %}
+
+                    Follow
+
+                {% endif %}
+
+            </a>
+
+            <a
+                href="/message/{{ profile.id }}"
+                class="btn btn-success">
+
+                <i class="bi bi-chat-dots-fill"></i>
+
+                Message
+
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+<hr>
+
+<h3 class="mb-3">Posts</h3>
+
+{% if profile.posts %}
+
+    {% for post in profile.posts %}
+
+    <div class="card shadow mb-3">
+
+        <div class="card-body">
+
+            <p class="fs-5">
+
+                {{ post.content }}
+
+            </p>
+
+            {% if post.image %}
+
+            <img
+                src="{{ url_for('static', filename='uploads/' + post.image) }}"
+                class="post-image">
+
+            {% endif %}
+
+            <hr>
+
+            <small class="text-muted">
+
+                {{ post.created_at.strftime('%d %b %Y %I:%M %p') }}
+
+            </small>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+{% else %}
+
+    <div class="alert alert-info">
+
+        No posts yet.
+
+    </div>
+
+{% endif %}
+
+{% endblock %}

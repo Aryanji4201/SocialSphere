@@ -1,0 +1,67 @@
+<div class="card">
+
+    <div class="card-body text-center">
+
+        <img
+            src="https://ui-avatars.com/api/?name={{ current_user.username }}&background=1877f2&color=fff"
+            class="rounded-circle mb-3">
+
+        <h4>{{ current_user.username }}</h4>
+
+        <small class="text-muted">
+            {{ current_user.email }}
+        </small>
+
+        <hr>
+
+        <div class="row">
+
+            <div class="col">
+
+                <strong>{{ current_user.posts|length }}</strong>
+
+                <br>
+
+                <small>Posts</small>
+
+            </div>
+
+            <div class="col">
+
+                <strong>{{ current_user.followers|length }}</strong>
+
+                <br>
+
+                <small>Followers</small>
+
+            </div>
+
+            <div class="col">
+
+                <strong>{{ current_user.following|length }}</strong>
+
+                <br>
+
+                <small>Following</small>
+
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div class="sidebar-menu">
+
+            <a href="/"><i class="bi bi-house"></i> Home</a>
+
+            <a href="/profile/{{ current_user.id }}"><i class="bi bi-person"></i> Profile</a>
+
+            <a href="/messages"><i class="bi bi-chat"></i> Messages</a>
+
+            <a href="/notifications"><i class="bi bi-bell"></i> Notifications</a>
+
+        </div>
+
+    </div>
+
+</div>

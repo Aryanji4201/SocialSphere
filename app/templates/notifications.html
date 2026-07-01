@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Notifications</h2>
+
+{% if notifications %}
+
+    {% for notification in notifications %}
+
+    <div class="card mb-3">
+
+        <div class="card-body">
+
+            <p>{{ notification.message }}</p>
+
+            <small class="text-muted">
+                {{ notification.created_at.strftime('%d %b %Y %I:%M %p') }}
+            </small>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+{% else %}
+
+    <p>No notifications yet.</p>
+
+{% endif %}
+
+{% endblock %}

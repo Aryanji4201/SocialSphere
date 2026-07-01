@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card shadow">
+
+    <div class="card-header">
+
+        <h3>
+
+            <i class="bi bi-chat-dots-fill"></i>
+
+            Messages
+
+        </h3>
+
+    </div>
+
+    <div class="list-group list-group-flush">
+
+        {% if conversations %}
+
+            {% for item in conversations %}
+
+            <a
+                href="/chat/{{ item.conversation.id }}"
+                class="list-group-item list-group-item-action">
+
+                <div class="d-flex justify-content-between">
+
+                    <div>
+
+                        <h5>
+
+                            {{ item.other_user.username }}
+
+                        </h5>
+
+                        {% if item.last_message %}
+
+                        <small class="text-muted">
+
+                            {{ item.last_message.content }}
+
+                        </small>
+
+                        {% else %}
+
+                        <small class="text-muted">
+
+                            No messages yet.
+
+                        </small>
+
+                        {% endif %}
+
+                    </div>
+
+                    {% if item.last_message %}
+
+                    <small>
+
+                        {{ item.last_message.created_at.strftime('%I:%M %p') }}
+
+                    </small>
+
+                    {% endif %}
+
+                </div>
+
+            </a>
+
+            {% endfor %}
+
+        {% else %}
+
+        <div class="p-4 text-center">
+
+            <h5>No conversations yet.</h5>
+
+            <p class="text-muted">
+                Start chatting with someone you mutually follow.
+            </p>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

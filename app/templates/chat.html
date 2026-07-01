@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card shadow">
+
+    <div class="card-header">
+
+        <h4>
+
+            <i class="bi bi-chat-dots-fill"></i>
+
+            {{ other_user.username }}
+
+        </h4>
+
+    </div>
+
+    <div
+        class="card-body"
+        style="height:500px; overflow-y:auto;">
+
+        {% for message in messages %}
+
+            {% if message.sender_id == current_user.id %}
+
+            <div class="text-end mb-3">
+
+                <div
+                    class="d-inline-block bg-primary text-white p-3 rounded">
+
+                    {{ message.content }}
+
+                </div>
+
+                <br>
+
+                <small class="text-muted">
+
+                    {{ message.created_at.strftime('%d %b %Y %I:%M %p') }}
+
+                </small>
+
+            </div>
+
+            {% else %}
+
+            <div class="mb-3">
+
+                <div
+                    class="d-inline-block bg-light p-3 rounded">
+
+                    {{ message.content }}
+
+                </div>
+
+                <br>
+
+                <small class="text-muted">
+
+                    {{ message.created_at.strftime('%d %b %Y %I:%M %p') }}
+
+                </small>
+
+            </div>
+
+            {% endif %}
+
+        {% endfor %}
+
+    </div>
+
+    <div class="card-footer">
+
+        <form method="POST">
+
+            <div class="input-group">
+
+                <input
+                    class="form-control"
+                    name="content"
+                    placeholder="Type a message..."
+                    required>
+
+                <button
+                    class="btn btn-primary"
+                    type="submit">
+
+                    <i class="bi bi-send-fill"></i>
+
+                    Send
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
