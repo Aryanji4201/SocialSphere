@@ -1,26 +1,32 @@
-<div class="card">
+<div class="card shadow sidebar-card">
 
     <div class="card-body text-center">
 
         <img
             src="https://ui-avatars.com/api/?name={{ current_user.username }}&background=1877f2&color=fff"
+            width="90"
+            height="90"
             class="rounded-circle mb-3">
 
-        <h4>{{ current_user.username }}</h4>
+        <h4 class="mb-1">
+
+            {{ current_user.username }}
+
+        </h4>
 
         <small class="text-muted">
+
             {{ current_user.email }}
+
         </small>
 
         <hr>
 
-        <div class="row">
+        <div class="row text-center">
 
             <div class="col">
 
-                <strong>{{ current_user.posts|length }}</strong>
-
-                <br>
+                <h5>{{ current_user.posts|length }}</h5>
 
                 <small>Posts</small>
 
@@ -28,9 +34,7 @@
 
             <div class="col">
 
-                <strong>{{ current_user.followers|length }}</strong>
-
-                <br>
+                <h5>{{ current_user.followers|length }}</h5>
 
                 <small>Followers</small>
 
@@ -38,9 +42,7 @@
 
             <div class="col">
 
-                <strong>{{ current_user.following|length }}</strong>
-
-                <br>
+                <h5>{{ current_user.following|length }}</h5>
 
                 <small>Following</small>
 
@@ -50,15 +52,47 @@
 
         <hr>
 
-        <div class="sidebar-menu">
+        <div class="list-group list-group-flush">
 
-            <a href="/"><i class="bi bi-house"></i> Home</a>
+            <a
+                href="/"
+                class="list-group-item list-group-item-action">
 
-            <a href="/profile/{{ current_user.id }}"><i class="bi bi-person"></i> Profile</a>
+                <i class="bi bi-house-fill me-2"></i>
 
-            <a href="/messages"><i class="bi bi-chat"></i> Messages</a>
+                Home
 
-            <a href="/notifications"><i class="bi bi-bell"></i> Notifications</a>
+            </a>
+
+            <a
+                href="/profile/{{ current_user.id }}"
+                class="list-group-item list-group-item-action">
+
+                <i class="bi bi-person-fill me-2"></i>
+
+                Profile
+
+            </a>
+
+            <a
+                href="/messages"
+                class="list-group-item list-group-item-action">
+
+                <i class="bi bi-chat-dots-fill me-2"></i>
+
+                Messages
+
+            </a>
+
+            <a
+                href="/notifications"
+                class="list-group-item list-group-item-action">
+
+                <i class="bi bi-bell-fill me-2"></i>
+
+                Notifications
+
+            </a>
 
         </div>
 

@@ -310,3 +310,92 @@ body{
     display:none;
 
 }
+/* ===========================
+   Left Sidebar
+=========================== */
+
+.sidebar-card{
+
+    border:none;
+
+    border-radius:18px;
+
+}
+
+.sidebar-card img{
+
+    border:4px solid #eaf2ff;
+
+}
+
+.list-group-item{
+
+    border:none;
+
+    border-radius:12px;
+
+    margin-bottom:6px;
+
+    transition:.2s;
+
+}
+
+.list-group-item:hover{
+
+    background:#eef4ff;
+
+    transform:translateX(4px);
+
+    color:#1877f2;
+
+}
+
+.list-group-item i{
+
+    color:#1877f2;
+
+}
+
+/* ===========================
+   Create Post
+=========================== */
+
+.create-post-card{
+
+    border:none;
+
+    border-radius:20px;
+
+}
+
+.create-post-textarea{
+
+    border:none;
+
+    resize:none;
+
+    font-size:18px;
+
+    box-shadow:none !important;
+
+}
+
+.create-post-textarea::placeholder{
+
+    color:#777;
+
+    font-size:18px;
+
+}
+
+.create-post-card .btn{
+
+    border-radius:12px;
+
+}
+
+.create-post-card label{
+
+    cursor:pointer;
+
+}
