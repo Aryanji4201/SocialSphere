@@ -399,3 +399,25 @@ body{
     cursor:pointer;
 
 }
+
+.sidebar-card{
+
+    border:none;
+
+    border-radius:18px;
+
+}
+
+.sidebar-card img{
+
+    object-fit:cover;
+
+}
+
+.badge{
+
+    margin:4px;
+
+    font-size:14px;
+
+}

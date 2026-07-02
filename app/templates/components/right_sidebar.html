@@ -1,6 +1,70 @@
-<div class="card">
+<div class="card shadow sidebar-card">
 
     <div class="card-body">
+
+        <h5>
+
+            <i class="bi bi-people-fill"></i>
+
+            Suggested Users
+
+        </h5>
+
+        <hr>
+
+        {% if suggested_users %}
+
+            {% for user in suggested_users %}
+
+            <div class="d-flex align-items-center mb-3">
+
+                <img
+                    src="https://ui-avatars.com/api/?name={{ user.username }}&background=1877f2&color=fff"
+                    width="45"
+                    height="45"
+                    class="rounded-circle">
+
+                <div class="ms-3 flex-grow-1">
+
+                    <strong>
+
+                        {{ user.username }}
+
+                    </strong>
+
+                    <br>
+
+                    <small class="text-muted">
+
+                        {{ user.email }}
+
+                    </small>
+
+                </div>
+
+                <a
+                    href="/follow/{{ user.id }}"
+                    class="btn btn-sm btn-primary">
+
+                    Follow
+
+                </a>
+
+            </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <p class="text-muted">
+
+                No suggestions available.
+
+            </p>
+
+        {% endif %}
+
+        <hr>
 
         <h5>
 
@@ -8,25 +72,27 @@
 
         </h5>
 
-        <hr>
+        <div class="mt-3">
 
-        <p>#Flask</p>
+            <span class="badge bg-primary">
 
-        <p>#Python</p>
+                #Flask
 
-        <p>#OpenAI</p>
+            </span>
 
-        <p>#MachineLearning</p>
+            <span class="badge bg-success">
 
-        <hr>
+                #Python
 
-        <h5>
+            </span>
 
-            👥 Suggestions
+            <span class="badge bg-dark">
 
-        </h5>
+                #OpenAI
 
-        <p>Coming Soon...</p>
+            </span>
+
+        </div>
 
     </div>
 
