@@ -10,7 +10,7 @@ body{
 
 .navbar{
 
-    background:rgb(236, 194, 44);
+    background:rgb(232, 200, 60);
 
     position:sticky;
 
@@ -22,7 +22,7 @@ body{
 
 .navbar-brand{
 
-    font-size:40px;
+    font-size:35px;
 
     font-weight:bold;
 
