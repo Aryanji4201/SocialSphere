@@ -6,3 +6,4 @@ from app.models.comment import Comment
 from app.models.notification import Notification
 from app.models.conversation import Conversation
 from app.models.message import Message
+from app.models.saved_post import SavedPost

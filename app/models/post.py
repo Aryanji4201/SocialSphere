@@ -36,6 +36,12 @@ class Post(db.Model):
     lazy=True,
     cascade="all, delete-orphan"
 )
+    saved_by = db.relationship(
+    "SavedPost",
+    backref="post",
+    lazy=True,
+    cascade="all, delete-orphan"
+)
     image = db.Column(
     db.String(255),
     nullable=True

@@ -91,6 +91,12 @@ class User(UserMixin, db.Model):
     lazy=True,
     cascade="all, delete-orphan"
 )
+    saved_posts = db.relationship(
+    "SavedPost",
+    backref="user",
+    lazy=True,
+    cascade="all, delete-orphan"
+)
 
     def set_password(self, password):
         self.password = generate_password_hash(password)

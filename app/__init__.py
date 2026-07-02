@@ -15,6 +15,7 @@ def create_app():
     from app.routes.notification import notification
     from app.routes.search import search
     from app.routes.message import message
+    from app.routes.save import save
 
     app = Flask(__name__)
 
@@ -29,7 +30,9 @@ def create_app():
     def load_user(user_id):
         return User.query.get(int(user_id))
 
-    
+    @app.route("/test")
+    def test():
+        return "Flask is working!"
     app.register_blueprint(post)
     app.register_blueprint(auth)
     app.register_blueprint(home)
@@ -40,5 +43,6 @@ def create_app():
     app.register_blueprint(notification)
     app.register_blueprint(search)
     app.register_blueprint(message)
+    app.register_blueprint(save)
 
     return app

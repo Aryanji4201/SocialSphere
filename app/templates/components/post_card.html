@@ -126,10 +126,20 @@
             <button
                 class="btn btn-light"
                 disabled>
+                </button>
 
-                🔖 Save
+                <a href="{{ url_for('save.save_post', post_id=post.id) }}"
+                class="btn btn-light">
 
-            </button>
+                    {% if post.id in saved_post_ids %}
+                        🔖 Saved
+                    {% else %}
+                        🔖 Save
+                    {% endif %}
+
+                </a>
+
+            
 
         </div>
 
