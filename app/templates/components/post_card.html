@@ -1,20 +1,19 @@
-<div class="card feed-post mb-4">
+<div class="card feed-post shadow-sm mb-4">
 
     <div class="card-body">
 
         <!-- Header -->
-
         <div class="d-flex align-items-center">
 
             <img
                 src="https://ui-avatars.com/api/?name={{ post.author.username }}&background=1877f2&color=fff"
-                class="rounded-circle"
-                width="50"
-                height="50">
+                width="48"
+                height="48"
+                class="rounded-circle">
 
             <div class="ms-3 flex-grow-1">
 
-                <h6 class="mb-0">
+                <h6 class="mb-0 fw-bold">
 
                     <a
                         href="/profile/{{ post.author.id }}"
@@ -39,7 +38,7 @@
             <div class="dropdown">
 
                 <button
-                    class="btn btn-light"
+                    class="btn btn-light btn-sm"
                     data-bs-toggle="dropdown">
 
                     <i class="bi bi-three-dots"></i>
@@ -84,9 +83,9 @@
 
         </div>
 
-        <!-- Post Content -->
+        <!-- Content -->
 
-        <p class="mt-4 fs-5">
+        <p class="mt-4 mb-3 fs-5">
 
             {{ post.content }}
 
@@ -104,17 +103,15 @@
 
         <hr>
 
-        <!-- Buttons -->
+        <!-- Action Buttons -->
 
-        <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-around">
 
             <a
                 href="/like/{{ post.id }}"
                 class="btn btn-light">
 
-                <i class="bi bi-heart-fill text-danger"></i>
-
-                {{ post.likes|length }}
+                ❤️ {{ post.likes|length }}
 
             </a>
 
@@ -122,9 +119,7 @@
                 class="btn btn-light"
                 disabled>
 
-                <i class="bi bi-chat-left-text-fill"></i>
-
-                {{ post.comments|length }}
+                💬 {{ post.comments|length }}
 
             </button>
 
@@ -132,15 +127,15 @@
                 class="btn btn-light"
                 disabled>
 
-                <i class="bi bi-bookmark"></i>
-
-                Save
+                🔖 Save
 
             </button>
 
         </div>
 
         <!-- Comments -->
+
+        {% if post.comments %}
 
         <div class="mt-4">
 
@@ -164,7 +159,9 @@
 
         </div>
 
-        <!-- Comment Form -->
+        {% endif %}
+
+        <!-- Add Comment -->
 
         <form
             action="/comment/{{ post.id }}"
@@ -179,8 +176,7 @@
                     placeholder="Write a comment..."
                     required>
 
-                <button
-                    class="btn btn-primary">
+                <button class="btn btn-primary">
 
                     <i class="bi bi-send-fill"></i>
 
