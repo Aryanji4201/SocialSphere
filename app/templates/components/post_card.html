@@ -107,13 +107,15 @@
 
         <div class="d-flex justify-content-around">
 
-            <a
-                href="/like/{{ post.id }}"
-                class="btn btn-light">
+            <button
+                class="btn btn-light like-btn"
+                data-post-id="{{ post.id }}">
 
-                ❤️ {{ post.likes|length }}
+                ❤️ <span id="like-count-{{ post.id }}">
+                    {{ post.likes|length }}
+                </span>
 
-            </a>
+</button>
 
             <button
                 class="btn btn-light"
@@ -123,21 +125,28 @@
 
             </button>
 
-            <button
+            <!-- <button
                 class="btn btn-light"
                 disabled>
-                </button>
+            </button> -->
 
-                <a href="{{ url_for('save.save_post', post_id=post.id) }}"
-                class="btn btn-light">
+                <button
+                class="btn btn-light save-btn"
+                data-post-id="{{ post.id }}">
 
+                <span id="save-text-{{ post.id }}">
                     {% if post.id in saved_post_ids %}
                         🔖 Saved
                     {% else %}
                         🔖 Save
                     {% endif %}
+                </span>
 
-                </a>
+                <span id="save-count-{{ post.id }}">
+                    {{ post.saved_by|length }}
+                </span>
+
+            </button>
 
             
 

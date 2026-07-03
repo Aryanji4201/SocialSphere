@@ -1,7 +1,7 @@
 from flask import Blueprint
 from flask import redirect
 from flask import url_for
-
+from flask import jsonify
 from flask_login import login_required
 from flask_login import current_user
 
@@ -28,6 +28,7 @@ def toggle_like(post_id):
     if existing_like:
 
         db.session.delete(existing_like)
+        liked = False
 
     else:
 
@@ -38,13 +39,20 @@ def toggle_like(post_id):
 
         db.session.add(new_like)
 
-        create_notification(
-        sender_id=current_user.id,
-        receiver_id=post.author.id,
-        notification_type="like",
-        message=f"{current_user.username} liked your post.",
-        post_id=post.id
-    )
+        liked = True
+
+        if post.author.id != current_user.id:
+            create_notification(
+                sender_id=current_user.id,
+                receiver_id=post.author.id,
+                notification_type="like",
+                message=f"{current_user.username} liked your post.",
+                post_id=post.id
+            )
+
     db.session.commit()
 
-    return redirect(url_for("home.dashboard"))
+    return jsonify({
+        "liked": liked,
+        "likes": len(post.likes)
+    })

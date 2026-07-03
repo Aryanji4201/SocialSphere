@@ -2,65 +2,87 @@
 
 {% block content %}
 
-<div class="card shadow">
+<div class="card shadow border-0 chat-card">
 
-    <div class="card-header">
+    <!-- Header -->
 
-        <h4>
+    <div class="card-header bg-white">
 
-            <i class="bi bi-chat-dots-fill"></i>
+        <div class="d-flex align-items-center">
 
-            {{ other_user.username }}
+            <img
+                src="https://ui-avatars.com/api/?name={{ other_user.username }}&background=1877f2&color=fff"
+                class="rounded-circle"
+                width="55"
+                height="55">
 
-        </h4>
+            <div class="ms-3">
 
-    </div>
+                <h5 class="mb-0">
 
-    <div
-        class="card-body"
-        style="height:500px; overflow-y:auto;">
+                    {{ other_user.username }}
 
-        {% for message in messages %}
+                </h5>
 
-            {% if message.sender_id == current_user.id %}
+                <small class="text-success">
 
-            <div class="text-end mb-3">
-
-                <div
-                    class="d-inline-block bg-primary text-white p-3 rounded">
-
-                    {{ message.content }}
-
-                </div>
-
-                <br>
-
-                <small class="text-muted">
-
-                    {{ message.created_at.strftime('%d %b %Y %I:%M %p') }}
+                    ● Online
 
                 </small>
 
             </div>
 
-            {% else %}
+        </div>
 
-            <div class="mb-3">
+    </div>
 
-                <div
-                    class="d-inline-block bg-light p-3 rounded">
+    <!-- Messages -->
+
+    <div
+        class="card-body chat-body"
+        id="chatBody">
+
+        {% for message in messages %}
+
+            {% if message.sender_id == current_user.id %}
+
+            <div class="d-flex justify-content-end mb-3">
+
+                <div class="my-message">
 
                     {{ message.content }}
 
+                    <div class="message-time">
+
+                        {{ message.created_at.strftime('%I:%M %p') }}
+
+                    </div>
+
                 </div>
 
-                <br>
+            </div>
 
-                <small class="text-muted">
+            {% else %}
 
-                    {{ message.created_at.strftime('%d %b %Y %I:%M %p') }}
+            <div class="d-flex align-items-end mb-3">
 
-                </small>
+                <img
+                    src="https://ui-avatars.com/api/?name={{ other_user.username }}"
+                    class="rounded-circle me-2"
+                    width="35"
+                    height="35">
+
+                <div class="other-message">
+
+                    {{ message.content }}
+
+                    <div class="message-time">
+
+                        {{ message.created_at.strftime('%I:%M %p') }}
+
+                    </div>
+
+                </div>
 
             </div>
 
@@ -70,16 +92,27 @@
 
     </div>
 
-    <div class="card-footer">
+    <!-- Input -->
+
+    <div class="card-footer bg-white">
 
         <form method="POST">
 
             <div class="input-group">
 
+                <button
+                    class="btn btn-light"
+                    type="button">
+
+                    📎
+
+                </button>
+
                 <input
                     class="form-control"
                     name="content"
                     placeholder="Type a message..."
+                    autocomplete="off"
                     required>
 
                 <button
@@ -87,8 +120,6 @@
                     type="submit">
 
                     <i class="bi bi-send-fill"></i>
-
-                    Send
 
                 </button>
 
@@ -99,5 +130,13 @@
     </div>
 
 </div>
+
+<script>
+
+const chatBody = document.getElementById("chatBody");
+
+chatBody.scrollTop = chatBody.scrollHeight;
+
+</script>
 
 {% endblock %}

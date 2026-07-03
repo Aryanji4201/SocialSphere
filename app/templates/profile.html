@@ -28,7 +28,9 @@
 
             <div class="col">
 
-                <h4>{{ profile.followers|length }}</h4>
+               <h4 id="followers-count">
+                    {{ profile.followers|length }}
+                </h4>
 
                 <small>Followers</small>
 
@@ -48,23 +50,34 @@
 
         <div class="d-flex justify-content-center gap-2">
 
-            <a
-                class="btn btn-primary"
-                href="/follow/{{ profile.id }}">
-
-                {% if profile.followers
-                    |selectattr("follower_id","equalto",current_user.id)
+           <button
+                id="follow-btn"
+                class="btn {% if profile.followers
+                    |selectattr('follower_id','equalto',current_user.id)
                     |list|length %}
+                        btn-secondary
+                    {% else %}
+                        btn-primary
+                    {% endif %}"
+                data-user-id="{{ profile.id }}">
 
-                    Following
+                <span id="follow-text">
 
-                {% else %}
+                    {% if profile.followers
+                        |selectattr("follower_id","equalto",current_user.id)
+                        |list|length %}
 
-                    Follow
+                        Following
 
-                {% endif %}
+                    {% else %}
 
-            </a>
+                        Follow
+
+                    {% endif %}
+
+                </span>
+
+            </button>
 
             <a
                 href="/message/{{ profile.id }}"
@@ -133,5 +146,40 @@
     </div>
 
 {% endif %}
+
+<script>
+    console.log("Follow JS Loaded");
+
+const followBtn = document.getElementById("follow-btn");
+
+if (followBtn) {
+
+    followBtn.addEventListener("click", async function () {
+
+        const userId = this.dataset.userId;
+
+        const response = await fetch(`/follow/${userId}`);
+
+        const data = await response.json();
+
+        document.getElementById("follow-text").textContent =
+            data.following ? "Following" : "Follow";
+
+        document.getElementById("followers-count").textContent =
+            data.followers;
+
+        if (data.following) {
+            this.classList.remove("btn-primary");
+            this.classList.add("btn-secondary");
+        } else {
+            this.classList.remove("btn-secondary");
+            this.classList.add("btn-primary");
+        }
+
+    });
+
+}
+
+</script>
 
 {% endblock %}

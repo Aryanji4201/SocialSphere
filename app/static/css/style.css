@@ -421,3 +421,172 @@ body{
     font-size:14px;
 
 }
+/* ===========================
+   Conversations
+=========================== */
+
+.conversation-item{
+
+    padding:18px;
+
+    border:none;
+
+    transition:.25s;
+
+    text-decoration:none;
+
+    color:black;
+
+}
+
+.conversation-item:hover{
+
+    background:#f5f8ff;
+
+    transform:translateX(6px);
+
+}
+
+.conversation-item h5{
+
+    font-weight:600;
+
+}
+
+.conversation-item img{
+
+    border:3px solid #eef3ff;
+
+}
+
+/* ===========================
+   Chat
+=========================== */
+
+.chat-card{
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+}
+
+.chat-body{
+
+    height:600px;
+
+    overflow-y:auto;
+
+    background:#f7f9fc;
+
+    padding:25px;
+
+}
+
+.my-message{
+
+    background:#1877f2;
+
+    color:white;
+
+    padding:12px 18px;
+
+    border-radius:20px 20px 4px 20px;
+
+    max-width:65%;
+
+    box-shadow:0 3px 10px rgba(0,0,0,.08);
+
+}
+
+.other-message{
+
+    background:white;
+
+    padding:12px 18px;
+
+    border-radius:20px 20px 20px 4px;
+
+    max-width:65%;
+
+    box-shadow:0 3px 10px rgba(0,0,0,.08);
+
+}
+
+.message-time{
+
+    font-size:11px;
+
+    margin-top:6px;
+
+    opacity:.7;
+
+}
+
+.card-footer{
+
+    padding:18px;
+
+}
+
+.card-footer input{
+
+    border-radius:30px;
+
+}
+#searchResults{
+
+top:105%;
+
+border-radius:15px;
+
+overflow:hidden;
+
+background:white;
+
+max-height:350px;
+
+overflow-y:auto;
+
+}
+
+#searchResults a{
+
+padding:14px;
+
+border:none;
+
+}
+
+#searchResults a:hover{
+
+background:#f4f7ff;
+
+}
+.dropdown-menu{
+
+    border-radius:16px;
+
+    overflow:hidden;
+
+}
+
+.dropdown-item{
+
+    transition:.2s;
+
+}
+
+.dropdown-item:hover{
+
+    background:#f5f8ff;
+
+}
+
+#notificationBadge{
+
+    font-size:10px;
+
+    min-width:18px;
+
+}

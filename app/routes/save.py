@@ -1,7 +1,9 @@
 from flask import Blueprint
 from flask import redirect
 from flask import url_for
-
+from flask import Blueprint, jsonify
+from flask import redirect
+from flask import url_for
 from flask_login import login_required
 from flask_login import current_user
 
@@ -13,34 +15,31 @@ save = Blueprint("save", __name__)
 @login_required
 def save_post(post_id):
 
-    print("========== SAVE ==========")
-
     existing = SavedPost.query.filter_by(
         user_id=current_user.id,
         post_id=post_id
     ).first()
 
-    print("Existing:", existing)
-
     if existing:
 
-        print("Deleting...")
-
         db.session.delete(existing)
+        saved = False
 
     else:
 
-        print("Creating new save...")
-
-        saved = SavedPost(
+        new_save = SavedPost(
             user_id=current_user.id,
             post_id=post_id
         )
 
-        db.session.add(saved)
+        db.session.add(new_save)
+        saved = True
 
     db.session.commit()
 
-    print("Committed!")
+    total_saves = SavedPost.query.filter_by(post_id=post_id).count()
 
-    return redirect(url_for("home.dashboard"))
+    return jsonify({
+        "saved": saved,
+        "count": total_saves
+    })

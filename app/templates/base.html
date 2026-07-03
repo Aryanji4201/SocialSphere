@@ -50,12 +50,20 @@
             action="/search"
             method="GET">
 
+            <div class="position-relative">
+
             <input
+                id="searchInput"
                 class="form-control"
-                type="search"
-                name="q"
-                placeholder="Search users..."
-                value="{{ request.args.get('q','') }}">
+                placeholder="Search users...">
+
+            <div
+                id="searchResults"
+                class="list-group position-absolute w-100 shadow"
+                style="z-index:1000;">
+            </div>
+
+</div>
 
         </form>
 
@@ -76,13 +84,60 @@
             </a>
 
             <!-- Notifications -->
+            <div class="dropdown">
+
+    <button
+        class="btn btn-light position-relative"
+        id="notificationButton"
+        data-bs-toggle="dropdown">
+
+        <i class="bi bi-bell-fill"></i>
+
+        <span
+            id="notificationBadge"
+            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+            style="display:none;">
+
+        </span>
+
+    </button>
+
+    <div
+        class="dropdown-menu dropdown-menu-end shadow p-0"
+        id="notificationDropdown"
+        style="width:360px;">
+
+        <div class="p-3 fw-bold border-bottom">
+
+            Notifications
+
+        </div>
+
+        <div id="notificationList">
+
+            <div class="p-3 text-center text-muted">
+
+                Loading...
+
+            </div>
+
+        </div>
+
+        <div class="border-top">
+
             <a
                 href="/notifications"
-                class="text-decoration-none">
+                class="dropdown-item text-center">
 
-                <i class="bi bi-bell-fill nav-icon"></i>
+                View All
 
             </a>
+
+        </div>
+
+    </div>
+
+</div>
             <a
                 href="{{ url_for('saved.saved_posts') }}"
                 class="btn btn-outline-dark">
@@ -200,6 +255,191 @@
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+document.querySelectorAll(".like-btn").forEach(button => {
+
+    button.addEventListener("click", async function () {
+
+        const postId = this.dataset.postId;
+
+        const response = await fetch(`/like/${postId}`);
+
+        const data = await response.json();
+
+        document.getElementById(`like-count-${postId}`).textContent = data.likes;
+
+    });
+
+});
+</script>
+<script>
+
+document.querySelectorAll(".save-btn").forEach(button => {
+
+    button.addEventListener("click", async function(){
+
+        const postId = this.dataset.postId;
+
+        const response = await fetch(`/save/${postId}`);
+
+        const data = await response.json();
+
+        document.getElementById(`save-text-${postId}`).textContent =
+            data.saved ? "🔖 Saved" : "🔖 Save";
+
+        document.getElementById(`save-count-${postId}`).textContent =
+            data.count;
+
+    });
+
+});
+
+</script>
+
+
+<script>
+
+const input = document.getElementById("searchInput");
+
+const results = document.getElementById("searchResults");
+
+if(input){
+
+let timeout;
+
+input.addEventListener("keyup",function(){
+
+clearTimeout(timeout);
+
+const query=this.value;
+
+timeout=setTimeout(async()=>{
+
+if(query.length===0){
+
+results.innerHTML="";
+
+return;
+
+}
+
+const response=await fetch(`/api/search?q=${query}`);
+
+const users=await response.json();
+
+results.innerHTML="";
+
+users.forEach(user=>{
+
+results.innerHTML+=`
+
+<a
+href="/profile/${user.id}"
+class="list-group-item list-group-item-action">
+
+<img
+src="${user.avatar}"
+width="35"
+height="35"
+class="rounded-circle me-2">
+
+${user.username}
+
+</a>
+
+`;
+
+});
+
+},250);
+
+});
+
+}
+
+</script>
+
+
+<script>
+
+const notificationButton = document.getElementById("notificationButton");
+const notificationList = document.getElementById("notificationList");
+const notificationBadge = document.getElementById("notificationBadge");
+
+async function loadNotifications(){
+
+    const response = await fetch("/api/notifications");
+    const notifications = await response.json();
+
+    notificationList.innerHTML = "";
+
+    let unread = 0;
+
+    if(notifications.length === 0){
+
+        notificationList.innerHTML = `
+            <div class="p-4 text-center text-muted">
+                No notifications yet 🎉
+            </div>
+        `;
+
+    }else{
+
+        notifications.forEach(n=>{
+
+            if(!n.is_read){
+                unread++;
+            }
+
+            notificationList.innerHTML += `
+                <a href="/notifications"
+                   class="dropdown-item border-bottom py-3">
+
+                    <div class="fw-semibold">
+                        ${n.message}
+                    </div>
+
+                    <small class="text-muted">
+                        ${n.time}
+                    </small>
+
+                </a>
+            `;
+
+        });
+
+    }
+
+    if(unread > 0){
+
+        notificationBadge.style.display = "inline";
+        notificationBadge.textContent = unread;
+
+    }else{
+
+        notificationBadge.style.display = "none";
+
+    }
+
+}
+
+notificationButton.addEventListener("click", async ()=>{
+
+    await loadNotifications();
+
+    await fetch("/api/notifications/read",{
+        method:"POST"
+    });
+
+    notificationBadge.style.display = "none";
+
+});
+
+loadNotifications();
+
+setInterval(loadNotifications,30000);
+
+</script>
 
 </body>
 

@@ -4,7 +4,7 @@ from flask import url_for
 
 from flask_login import login_required
 from flask_login import current_user
-
+from flask import Blueprint, redirect, url_for, jsonify
 from app.extensions import db
 
 from app.models.user import User
@@ -18,8 +18,7 @@ follow = Blueprint("follow", __name__)
 def toggle_follow(user_id):
 
     if user_id == current_user.id:
-        return redirect(url_for("profile.user_profile",
-                                user_id=user_id))
+        return jsonify({"error": "You cannot follow yourself"}), 400
 
     existing = Follow.query.filter_by(
         follower_id=current_user.id,
@@ -29,6 +28,7 @@ def toggle_follow(user_id):
     if existing:
 
         db.session.delete(existing)
+        following = False
 
     else:
 
@@ -38,18 +38,23 @@ def toggle_follow(user_id):
                 following_id=user_id
             )
         )
+
+        following = True
+
         create_notification(
-    sender_id=current_user.id,
-    receiver_id=user_id,
-    notification_type="follow",
-    message=f"{current_user.username} started following you."
-)
+            sender_id=current_user.id,
+            receiver_id=user_id,
+            notification_type="follow",
+            message=f"{current_user.username} started following you."
+        )
 
     db.session.commit()
 
-    return redirect(
-        url_for(
-            "profile.user_profile",
-            user_id=user_id
-        )
-    )
+    followers_count = Follow.query.filter_by(
+        following_id=user_id
+    ).count()
+
+    return jsonify({
+        "following": following,
+        "followers": followers_count
+    })
