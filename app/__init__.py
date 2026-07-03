@@ -16,6 +16,7 @@ def create_app():
     from app.routes.search import search
     from app.routes.message import message
     from app.routes.save import save
+    from app.routes.saved import saved
 
     app = Flask(__name__)
 
@@ -44,5 +45,6 @@ def create_app():
     app.register_blueprint(search)
     app.register_blueprint(message)
     app.register_blueprint(save)
+    app.register_blueprint(saved)
 
     return app

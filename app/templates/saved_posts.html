@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+
+    <h2 class="mb-4">
+        📌 Saved Posts
+    </h2>
+
+    {% if saved_posts %}
+
+        {% for saved in saved_posts %}
+
+        {% set post = saved.post %}
+
+        <div class="card shadow-sm mb-4">
+
+            <div class="card-body">
+
+                <div class="d-flex align-items-center mb-3">
+
+                    <img
+                        src="https://ui-avatars.com/api/?name={{ post.author.username }}"
+                        width="50"
+                        class="rounded-circle">
+
+                    <div class="ms-3">
+
+                        <h6 class="mb-0">
+
+                            {{ post.author.username }}
+
+                        </h6>
+
+                        <small class="text-muted">
+
+                            {{ post.created_at.strftime("%d %b %Y") }}
+
+                        </small>
+
+                    </div>
+
+                </div>
+
+                <p>
+
+                    {{ post.content }}
+
+                </p>
+
+                {% if post.image %}
+
+                <img
+                    src="{{ url_for('static', filename='uploads/' + post.image) }}"
+                    class="img-fluid rounded">
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <div class="alert alert-info">
+
+            You haven't saved any posts yet.
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}
