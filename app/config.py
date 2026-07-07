@@ -1,5 +1,7 @@
 import os
 
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+
 class Config:
 
     SECRET_KEY = os.getenv("SECRET_KEY", "super-secret-key")
@@ -10,6 +12,10 @@ class Config:
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-    UPLOAD_FOLDER = "app/static/uploads"
+    UPLOAD_FOLDER = os.path.join(
+        BASE_DIR,
+        "static",
+        "uploads"
+    )
 
-    MAX_CONTENT_LENGTH = 10 * 1024 * 1024  # 10 MB
+    MAX_CONTENT_LENGTH = 10 * 1024 * 1024

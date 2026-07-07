@@ -25,6 +25,16 @@ class User(UserMixin, db.Model):
     private_account = db.Column(db.Boolean, default=False)
 
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    location = db.Column(db.String(100))
+
+    website = db.Column(db.String(255))
+
+    cover_photo = db.Column(
+        db.String(255),
+        default="default_cover.jpg"
+    )
+
     posts = db.relationship(
     "Post",
     backref="author",
@@ -97,6 +107,18 @@ class User(UserMixin, db.Model):
     lazy=True,
     cascade="all, delete-orphan"
 )
+    location = db.Column(
+    db.String(100)
+)
+
+    website = db.Column(
+        db.String(255)
+    )
+
+    cover_photo = db.Column(
+        db.String(255),
+        default="default_cover.jpg"
+    )
 
     def set_password(self, password):
         self.password = generate_password_hash(password)

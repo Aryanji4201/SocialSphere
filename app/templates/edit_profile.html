@@ -2,27 +2,141 @@
 
 {% block content %}
 
-<h2>Edit Profile</h2>
+<div class="row justify-content-center">
 
-<form method="POST">
+    <div class="col-lg-8">
 
-<textarea
-class="form-control"
-rows="5"
-name="bio">
+        <div class="card shadow">
 
-{{ current_user.bio }}
+            <div class="card-header">
 
-</textarea>
+                <h3>
+                    <i class="bi bi-pencil-square"></i>
+                    Edit Profile
+                </h3>
 
-<br>
+            </div>
 
-<button class="btn btn-primary">
+            <div class="card-body">
 
-Save
+                <form
+                    method="POST"
+                    enctype="multipart/form-data">
 
-</button>
+                    <!-- Username -->
 
-</form>
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Username
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="username"
+                            value="{{ current_user.username }}"
+                            required>
+
+                    </div>
+
+                    <!-- Bio -->
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Bio
+                        </label>
+
+                        <textarea
+                            class="form-control"
+                            rows="4"
+                            name="bio">{{ current_user.bio or "" }}</textarea>
+
+                    </div>
+
+                    <!-- Location -->
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Location
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="location"
+                            value="{{ current_user.location or '' }}">
+
+                    </div>
+
+                    <!-- Website -->
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Website
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="website"
+                            value="{{ current_user.website or '' }}">
+
+                    </div>
+
+                    <!-- Profile Picture -->
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Profile Picture
+                        </label>
+
+                        <input
+                            type="file"
+                            class="form-control"
+                            name="profile_picture"
+                            accept="image/*">
+
+                    </div>
+
+                    <!-- Cover Photo -->
+
+                    <div class="mb-4">
+
+                        <label class="form-label">
+                            Cover Photo
+                        </label>
+
+                        <input
+                            type="file"
+                            class="form-control"
+                            name="cover_photo"
+                            accept="image/*">
+
+                    </div>
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary">
+
+                        <i class="bi bi-check-circle"></i>
+
+                        Save Changes
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
 {% endblock %}

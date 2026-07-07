@@ -1,16 +1,308 @@
-body{
+/* ==========================================================
+   SocialSphere v2
+   Part 1 - Global UI
+========================================================== */
 
-    background:#b0ccf7;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-    font-family:'Segoe UI',sans-serif;
+:root{
+
+    --primary:#1877F2;
+    --primary-dark:#145fd1;
+
+    --secondary:#F5F7FA;
+
+    --background:#EEF3FF;
+
+    --white:#FFFFFF;
+
+    --text:#1C1E21;
+
+    --text-light:#65676B;
+
+    --success:#22C55E;
+
+    --danger:#EF4444;
+
+    --warning:#F59E0B;
+
+    --radius:20px;
+
+    --shadow:
+        0 10px 30px rgba(0,0,0,.08);
+
+    --shadow-hover:
+        0 18px 40px rgba(0,0,0,.12);
 
 }
 
-/* Navbar */
+/* ==========================================================
+   Reset
+========================================================== */
+
+*{
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    background:var(--background);
+
+    color:var(--text);
+
+    font-family:'Inter',sans-serif;
+
+}
+
+/* ==========================================================
+   Scrollbar
+========================================================== */
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#dde6fb;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#b8c7ea;
+
+    border-radius:50px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#8ea8dd;
+
+}
+
+/* ==========================================================
+   Selection
+========================================================== */
+
+::selection{
+
+    background:var(--primary);
+
+    color:white;
+
+}
+
+/* ==========================================================
+   Links
+========================================================== */
+
+a{
+
+    text-decoration:none;
+
+    transition:.25s;
+
+}
+
+a:hover{
+
+    text-decoration:none;
+
+}
+
+/* ==========================================================
+   Buttons
+========================================================== */
+
+.btn{
+
+    border-radius:50px;
+
+    padding:10px 22px;
+
+    font-weight:600;
+
+    transition:.25s;
+
+}
+
+.btn:hover{
+
+    transform:translateY(-2px);
+
+}
+
+.btn-primary{
+
+    background:var(--primary);
+
+    border:none;
+
+}
+
+.btn-primary:hover{
+
+    background:var(--primary-dark);
+
+}
+
+.btn-success{
+
+    border:none;
+
+}
+
+.btn-light{
+
+    background:#f7f8fb;
+
+    border:none;
+
+}
+
+.btn-light:hover{
+
+    background:#edf1f7;
+
+}
+
+.btn-outline-dark{
+
+    border-radius:50px;
+
+}
+
+/* ==========================================================
+   Cards
+========================================================== */
+
+.card{
+
+    border:none;
+
+    border-radius:var(--radius);
+
+    background:white;
+
+    box-shadow:var(--shadow);
+
+    transition:
+        transform .25s,
+        box-shadow .25s;
+
+    overflow:hidden;
+
+}
+
+.card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:var(--shadow-hover);
+
+}
+
+/* ==========================================================
+   Inputs
+========================================================== */
+
+.form-control{
+
+    border-radius:15px;
+
+    border:1px solid #dde4ef;
+
+    padding:12px 15px;
+
+    box-shadow:none;
+
+}
+
+.form-control:focus{
+
+    border-color:var(--primary);
+
+    box-shadow:
+        0 0 0 .18rem rgba(24,119,242,.15);
+
+}
+
+/* ==========================================================
+   Images
+========================================================== */
+
+img{
+
+    user-select:none;
+
+}
+
+.rounded-circle{
+
+    object-fit:cover;
+
+}
+
+/* ==========================================================
+   Badges
+========================================================== */
+
+.badge{
+
+    border-radius:50px;
+
+    font-weight:600;
+
+}
+
+/* ==========================================================
+   Utilities
+========================================================== */
+
+.shadow-soft{
+
+    box-shadow:var(--shadow);
+
+}
+
+.shadow-soft:hover{
+
+    box-shadow:var(--shadow-hover);
+
+}
+
+.text-muted{
+
+    color:var(--text-light)!important;
+
+}
+
+.dropdown-toggle::after{
+
+    display:none;
+
+}
+/* ==========================================================
+   NAVBAR
+========================================================== */
 
 .navbar{
 
-    background:rgb(232, 200, 60);
+    background:#ffffff;
+
+    height:75px;
 
     position:sticky;
 
@@ -18,325 +310,215 @@ body{
 
     z-index:1000;
 
+    box-shadow:0 5px 20px rgba(0,0,0,.06);
+
 }
 
 .navbar-brand{
 
-    font-size:35px;
+    color:var(--primary)!important;
 
-    font-weight:bold;
+    font-size:30px;
 
-    color:#f21818 !important;
+    font-weight:700;
+
+    letter-spacing:.3px;
+
+}
+
+.navbar-brand i{
+
+    margin-right:8px;
 
 }
 
 .search-box{
 
-    width:350px;
+    width:380px;
 
 }
 
 .search-box input{
 
-    border-radius:30px;
-
-    background:#d6e4f9;
+    background:#f5f7fb;
 
     border:none;
+
+    border-radius:30px;
+
+    padding:11px 18px;
+
+}
+
+.search-box input:focus{
+
+    background:white;
 
 }
 
 .nav-icon{
 
-    font-size:24px;
+    font-size:23px;
 
-    color:#000000;
+    color:#444;
 
-    transition:.3s;
+    transition:.25s;
 
 }
 
 .nav-icon:hover{
 
-    color:#720000;
+    color:var(--primary);
+
+    transform:scale(1.12);
 
 }
 
-/* Cards */
+.navbar img{
 
-.card{
+    width:42px;
 
-    border:none;
+    height:42px;
+
+    object-fit:cover;
+
+}
+
+/* ==========================================================
+   SEARCH DROPDOWN
+========================================================== */
+
+#searchResults{
+
+    top:105%;
 
     border-radius:18px;
 
-    box-shadow:0 5px 18px rgba(127, 242, 255, 0.891);
+    overflow:hidden;
+
+    background:white;
+
+    max-height:350px;
+
+    overflow-y:auto;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
 
 }
 
-.card:hover{
+#searchResults a{
 
-    transform:translateY(-3px);
+    padding:14px;
+
+    border:none;
 
     transition:.25s;
 
 }
 
-.rounded-circle{
+#searchResults a:hover{
 
-    width:110px;
+    background:#eef4ff;
 
-    height:110px;
+}
 
-    border:4px solid #282828;
+/* ==========================================================
+   DASHBOARD
+========================================================== */
+
+.container{
+
+    max-width:1350px;
 
 }
 
 .feed-post{
 
-    margin-bottom:25px;
+    margin-bottom:28px;
 
 }
 
-.post-image{
+.feed-post .card-body{
 
-    width:100%;
-
-    max-height:500px;
-
-    object-fit:cover;
-
-    border-radius:15px;
+    padding:22px;
 
 }
 
-.comment-box{
-
-    background:#ffffff;
-
-    border-radius:12px;
-
-    padding:10px;
-
-    margin-bottom:10px;
-
-}
-
-.btn{
-
-    border-radius:25px;
-
-}
-
-.sidebar-menu a{
-
-    display:block;
-
-    padding:10px;
-
-    color:#444;
-
-    text-decoration:none;
-
-    border-radius:10px;
-
-    margin-bottom:6px;
-
-}
-
-.sidebar-menu a:hover{
-
-    background:#1877f2;
-
-    color:white;
-
-}
-
-/* ===========================
-   Chat
-=========================== */
-
-.card-body::-webkit-scrollbar {
-    width: 6px;
-}
-
-.card-body::-webkit-scrollbar-thumb {
-    background: #bdbdbd;
-    border-radius: 10px;
-}
-
-.bg-primary {
-    border-radius: 18px !important;
-}
-
-.bg-light {
-    border-radius: 18px !important;
-}
-/* ===========================
-   Feed
-=========================== */
-
-.feed-post{
-
-    transition:.25s;
-
-}
-
-.feed-post:hover{
-
-    transform:translateY(-4px);
-
-}
-
-.post-image{
-
-    width:100%;
-
-    max-height:550px;
-
-    object-fit:cover;
-
-    border-radius:18px;
-
-    margin-top:15px;
-
-    margin-bottom:15px;
-
-}
-
-.comment-box{
-
-    background:#f5f7fb;
-
-    padding:12px;
-
-    border-radius:15px;
-
-    margin-bottom:10px;
-
-}
-
-.comment-box strong{
-
-    color:#1877f2;
-
-}
-
-.dropdown-toggle::after{
-
-    display:none;
-
-}
-
-.btn-light{
-
-    background:#f8f9fa;
-
-    border:none;
-
-}
-
-.btn-light:hover{
-
-    background:#e9ecef;
-
-}
-.feed-post{
-
-    border:none;
-
-    border-radius:18px;
-
-    transition:.25s;
-
-}
-
-.feed-post:hover{
-
-    transform:translateY(-3px);
-
-    box-shadow:0 8px 20px rgba(0,0,0,.08);
-
-}
-
-.post-image{
-
-    width:100%;
-
-    max-height:500px;
-
-    object-fit:cover;
-
-    border-radius:18px;
-
-    margin:15px 0;
-
-}
-
-.comment-box{
-
-    background:#f5f7fb;
-
-    border-radius:15px;
-
-    padding:12px;
-
-    margin-bottom:10px;
-
-}
-
-.comment-box strong{
-
-    color:#1877f2;
-
-}
-
-.btn-light{
-
-    background:#f8f9fa;
-
-    border:none;
-
-}
-
-.btn-light:hover{
-
-    background:#e9ecef;
-
-}
-
-.dropdown-toggle::after{
-
-    display:none;
-
-}
-/* ===========================
-   Left Sidebar
-=========================== */
+/* ==========================================================
+   LEFT SIDEBAR
+========================================================== */
 
 .sidebar-card{
 
-    border:none;
-
-    border-radius:18px;
+    border-radius:22px;
 
 }
 
 .sidebar-card img{
 
-    border:4px solid #eaf2ff;
+    width:90px;
+
+    height:90px;
+
+    object-fit:cover;
 
 }
+
+.sidebar-menu{
+
+    margin-top:15px;
+
+}
+
+.sidebar-menu a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:14px 16px;
+
+    margin-bottom:8px;
+
+    color:#444;
+
+    border-radius:14px;
+
+    transition:.25s;
+
+}
+
+.sidebar-menu a i{
+
+    font-size:20px;
+
+    color:var(--primary);
+
+}
+
+.sidebar-menu a:hover{
+
+    background:#eef4ff;
+
+    transform:translateX(6px);
+
+}
+
+/* ==========================================================
+   RIGHT SIDEBAR
+========================================================== */
 
 .list-group-item{
 
     border:none;
 
-    border-radius:12px;
+    border-radius:14px;
 
-    margin-bottom:6px;
+    margin-bottom:8px;
 
-    transition:.2s;
+    transition:.25s;
 
 }
 
@@ -344,27 +526,39 @@ body{
 
     background:#eef4ff;
 
-    transform:translateX(4px);
-
-    color:#1877f2;
+    transform:translateX(6px);
 
 }
 
-.list-group-item i{
+.list-group-item img{
 
-    color:#1877f2;
+    width:42px;
+
+    height:42px;
+
+    object-fit:cover;
 
 }
 
-/* ===========================
-   Create Post
-=========================== */
+.list-group-item strong{
+
+    color:#222;
+
+}
+
+.badge{
+
+    padding:6px 12px;
+
+}
+
+/* ==========================================================
+   CREATE POST
+========================================================== */
 
 .create-post-card{
 
-    border:none;
-
-    border-radius:20px;
+    border-radius:22px;
 
 }
 
@@ -376,21 +570,19 @@ body{
 
     font-size:18px;
 
-    box-shadow:none !important;
+    box-shadow:none!important;
+
+}
+
+.create-post-textarea:focus{
+
+    box-shadow:none!important;
 
 }
 
 .create-post-textarea::placeholder{
 
     color:#777;
-
-    font-size:18px;
-
-}
-
-.create-post-card .btn{
-
-    border-radius:12px;
 
 }
 
@@ -400,74 +592,856 @@ body{
 
 }
 
-.sidebar-card{
+.create-post-card .btn{
 
-    border:none;
+    padding:11px 22px;
 
-    border-radius:18px;
+}
+/* ==========================================================
+   FEED
+========================================================== */
+
+.feed-post{
+
+    border-radius:24px;
+
+    overflow:hidden;
+
+    background:#fff;
 
 }
 
-.sidebar-card img{
+.feed-post .card-body{
+
+    padding:24px;
+
+}
+
+.feed-post hr{
+
+    opacity:.08;
+
+    margin:18px 0;
+
+}
+
+/* ==========================================================
+   POST HEADER
+========================================================== */
+
+.feed-post h6{
+
+    font-size:17px;
+
+    font-weight:700;
+
+    margin-bottom:2px;
+
+}
+
+.feed-post small{
+
+    color:#777;
+
+}
+
+.feed-post .rounded-circle{
+
+    width:52px;
+
+    height:52px;
 
     object-fit:cover;
-
-}
-
-.badge{
-
-    margin:4px;
-
-    font-size:14px;
-
-}
-/* ===========================
-   Conversations
-=========================== */
-
-.conversation-item{
-
-    padding:18px;
-
-    border:none;
-
-    transition:.25s;
-
-    text-decoration:none;
-
-    color:black;
-
-}
-
-.conversation-item:hover{
-
-    background:#f5f8ff;
-
-    transform:translateX(6px);
-
-}
-
-.conversation-item h5{
-
-    font-weight:600;
-
-}
-
-.conversation-item img{
 
     border:3px solid #eef3ff;
 
 }
 
-/* ===========================
-   Chat
-=========================== */
+/* ==========================================================
+   POST CONTENT
+========================================================== */
 
-.chat-card{
+.feed-post p{
+
+    font-size:17px;
+
+    line-height:1.7;
+
+    color:#333;
+
+}
+
+/* ==========================================================
+   POST IMAGE
+========================================================== */
+
+.post-image{
+
+    width:100%;
+
+    max-height:600px;
+
+    object-fit:cover;
+
+    border-radius:18px;
+
+    margin:18px 0;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+}
+
+.post-image:hover{
+
+    transform:scale(1.015);
+
+}
+
+/* ==========================================================
+   ACTION BUTTONS
+========================================================== */
+
+.feed-post .btn{
+
+    min-width:110px;
+
+    transition:.25s;
+
+}
+
+.feed-post .btn-light{
+
+    background:#f7f8fb;
+
+    color:#444;
+
+}
+
+.feed-post .btn-light:hover{
+
+    background:#eaf2ff;
+
+    color:var(--primary);
+
+}
+
+.like-btn{
+
+    font-weight:600;
+
+}
+
+.save-btn{
+
+    font-weight:600;
+
+}
+
+/* ==========================================================
+   COMMENT SECTION
+========================================================== */
+
+.comment-box{
+
+    background:#f7f9fc;
+
+    border-radius:18px;
+
+    padding:14px;
+
+    margin-bottom:12px;
+
+    transition:.25s;
+
+}
+
+.comment-box:hover{
+
+    background:#eef4ff;
+
+}
+
+.comment-box strong{
+
+    color:var(--primary);
+
+    display:block;
+
+    margin-bottom:4px;
+
+}
+
+/* ==========================================================
+   COMMENT FORM
+========================================================== */
+
+.input-group{
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+}
+
+.input-group input{
+
+    border:none;
+
+}
+
+.input-group input:focus{
+
+    box-shadow:none;
+
+}
+
+.input-group .btn{
+
+    border-radius:0;
+
+}
+
+/* ==========================================================
+   THREE DOT MENU
+========================================================== */
+
+.dropdown-menu{
+
+    border:none;
+
+    border-radius:18px;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
+
+    overflow:hidden;
+
+}
+
+.dropdown-item{
+
+    padding:13px 18px;
+
+    transition:.25s;
+
+}
+
+.dropdown-item:hover{
+
+    background:#eef4ff;
+
+}
+
+.dropdown-item i{
+
+    margin-right:8px;
+
+}
+
+/* ==========================================================
+   LIKE ANIMATION
+========================================================== */
+
+.like-btn:active{
+
+    transform:scale(.92);
+
+}
+
+.save-btn:active{
+
+    transform:scale(.92);
+
+}
+
+/* ==========================================================
+   LOADING SPINNER
+========================================================== */
+
+#loading-spinner{
+
+    padding:30px;
+
+}
+
+.spinner-border{
+
+    width:3rem;
+
+    height:3rem;
+
+}
+
+/* ==========================================================
+   POST CARD ANIMATION
+========================================================== */
+
+.feed-post{
+
+    animation:fadeIn .45s ease;
+
+}
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ==========================================================
+   IMAGE ZOOM EFFECT
+========================================================== */
+
+.post-image{
+
+    overflow:hidden;
+
+}
+
+.post-image:hover{
+
+    filter:brightness(.98);
+
+}
+
+/* ==========================================================
+   COMMENT INPUT
+========================================================== */
+
+.comment-input{
+
+    border-radius:30px;
+
+}
+
+/* ==========================================================
+   HOVER EFFECTS
+========================================================== */
+
+.feed-post a{
+
+    transition:.25s;
+
+}
+
+.feed-post a:hover{
+
+    color:var(--primary);
+
+}
+
+/* ==========================================================
+   REACTION COUNTS
+========================================================== */
+
+.like-count,
+
+.comment-count,
+
+.save-count{
+
+    font-weight:600;
+
+    color:#555;
+
+}
+/* ==========================================================
+   PROFILE PAGE
+========================================================== */
+
+.profile-page{
+
+    max-width:950px;
+
+    margin:auto;
+
+}
+
+.profile-card{
+
+    overflow:visible;
+
+    border-radius:25px;
+
+}
+
+/* ==========================================================
+   COVER PHOTO
+========================================================== */
+
+.profile-cover{
+
+    width:100%;
+
+    height:320px;
+
+    background:linear-gradient(135deg,#1877F2,#56A5FF);
+
+    border-radius:25px 25px 0 0;
+
+    overflow:hidden;
+
+    position:relative;
+
+}
+
+.profile-cover img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+}
+
+/* ==========================================================
+   PROFILE BODY
+========================================================== */
+
+.profile-body{
+
+    padding-top:100px;
+
+    padding-bottom:35px;
+
+    text-align:center;
+
+}
+
+/* ==========================================================
+   PROFILE AVATAR
+========================================================== */
+
+.profile-avatar{
+
+    width:170px;
+
+    height:170px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:6px solid white;
+
+    position:absolute;
+
+    left:50%;
+
+    bottom:-85px;
+
+    transform:translateX(-50%);
+
+    background:white;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.18);
+
+    transition:.3s;
+
+}
+
+.profile-avatar:hover{
+
+    transform:translateX(-50%) scale(1.05);
+
+}
+
+/* ==========================================================
+   PROFILE NAME
+========================================================== */
+
+.profile-name{
+
+    font-size:34px;
+
+    font-weight:700;
+
+    color:#222;
+
+}
+
+.profile-username{
+
+    color:#777;
+
+    font-size:17px;
+
+    margin-bottom:15px;
+
+}
+
+/* ==========================================================
+   BIO
+========================================================== */
+
+.profile-bio{
+
+    max-width:650px;
+
+    margin:auto;
+
+    margin-top:15px;
+
+    margin-bottom:20px;
+
+    color:#444;
+
+    line-height:1.7;
+
+    font-size:16px;
+
+}
+
+/* ==========================================================
+   PROFILE INFO
+========================================================== */
+
+.profile-info{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:30px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:28px;
+
+}
+
+.profile-info div{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    color:#666;
+
+    font-size:15px;
+
+}
+
+.profile-info i{
+
+    color:var(--primary);
+
+}
+
+/* ==========================================================
+   STATS
+========================================================== */
+
+.profile-stats{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:80px;
+
+    margin:35px 0;
+
+}
+
+.profile-stat{
+
+    text-align:center;
+
+}
+
+.profile-stat h3{
+
+    font-weight:700;
+
+    margin-bottom:2px;
+
+}
+
+.profile-stat span{
+
+    color:#666;
+
+}
+
+/* ==========================================================
+   PROFILE BUTTONS
+========================================================== */
+
+.profile-buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+    margin-top:25px;
+
+}
+
+.profile-buttons .btn{
+
+    min-width:170px;
+
+}
+
+/* ==========================================================
+   POSTS TITLE
+========================================================== */
+
+.profile-post-title{
+
+    font-size:24px;
+
+    font-weight:700;
+
+    margin:35px 0 20px;
+
+}
+
+/* ==========================================================
+   PROFILE POSTS
+========================================================== */
+
+.profile-post{
+
+    border-radius:22px;
+
+    margin-bottom:25px;
+
+}
+
+/* ==========================================================
+   EDIT PROFILE FORM
+========================================================== */
+
+.edit-profile-card{
+
+    max-width:850px;
+
+    margin:auto;
+
+}
+
+.edit-profile-card .card-header{
+
+    background:white;
+
+    border:none;
+
+    padding:25px;
+
+}
+
+.edit-profile-card h3{
+
+    margin:0;
+
+    font-weight:700;
+
+}
+
+.edit-profile-card .card-body{
+
+    padding:30px;
+
+}
+
+.edit-profile-card label{
+
+    font-weight:600;
+
+    margin-bottom:8px;
+
+}
+
+.edit-profile-card textarea{
+
+    min-height:140px;
+
+    resize:none;
+
+}
+
+.edit-profile-card .btn{
+
+    width:220px;
+
+}
+
+/* ==========================================================
+   FILE INPUTS
+========================================================== */
+
+input[type=file]{
+
+    border-radius:15px;
+
+}
+
+/* ==========================================================
+   COVER PREVIEW
+========================================================== */
+
+.cover-preview{
+
+    width:100%;
+
+    height:250px;
 
     border-radius:20px;
 
+    object-fit:cover;
+
+    margin-bottom:20px;
+
+}
+
+/* ==========================================================
+   PROFILE ANIMATION
+========================================================== */
+
+.profile-card{
+
+    animation:profileFade .45s ease;
+
+}
+
+@keyframes profileFade{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media(max-width:768px){
+
+.profile-cover{
+
+height:220px;
+
+}
+
+.profile-avatar{
+
+width:130px;
+
+height:130px;
+
+bottom:-65px;
+
+}
+
+.profile-body{
+
+padding-top:80px;
+
+}
+
+.profile-name{
+
+font-size:26px;
+
+}
+
+.profile-stats{
+
+gap:30px;
+
+}
+
+.profile-buttons{
+
+flex-direction:column;
+
+align-items:center;
+
+}
+
+.profile-buttons .btn{
+
+width:90%;
+
+}
+
+.profile-info{
+
+flex-direction:column;
+
+gap:10px;
+
+}
+
+}
+/* ==========================================================
+   CHAT
+========================================================== */
+
+.chat-card{
+
+    border-radius:25px;
+
     overflow:hidden;
+
+}
+
+.chat-header{
+
+    padding:18px 25px;
+
+    background:white;
+
+    border-bottom:1px solid #edf1f7;
+
+}
+
+.chat-header img{
+
+    width:52px;
+
+    height:52px;
+
+    border-radius:50%;
+
+    object-fit:cover;
 
 }
 
@@ -477,15 +1451,15 @@ body{
 
     overflow-y:auto;
 
-    background:#f7f9fc;
-
     padding:25px;
+
+    background:#f7f9fc;
 
 }
 
 .my-message{
 
-    background:#1877f2;
+    background:var(--primary);
 
     color:white;
 
@@ -493,9 +1467,13 @@ body{
 
     border-radius:20px 20px 4px 20px;
 
-    max-width:65%;
+    max-width:70%;
 
-    box-shadow:0 3px 10px rgba(0,0,0,.08);
+    margin-left:auto;
+
+    margin-bottom:18px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
 
 }
 
@@ -503,13 +1481,17 @@ body{
 
     background:white;
 
+    color:#333;
+
     padding:12px 18px;
 
     border-radius:20px 20px 20px 4px;
 
-    max-width:65%;
+    max-width:70%;
 
-    box-shadow:0 3px 10px rgba(0,0,0,.08);
+    margin-bottom:18px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
 
 }
 
@@ -517,76 +1499,292 @@ body{
 
     font-size:11px;
 
-    margin-top:6px;
-
     opacity:.7;
+
+    margin-top:5px;
 
 }
 
-.card-footer{
+.chat-footer{
 
     padding:18px;
 
-}
-
-.card-footer input{
-
-    border-radius:30px;
-
-}
-#searchResults{
-
-top:105%;
-
-border-radius:15px;
-
-overflow:hidden;
-
-background:white;
-
-max-height:350px;
-
-overflow-y:auto;
+    background:white;
 
 }
 
-#searchResults a{
+.chat-footer input{
 
-padding:14px;
-
-border:none;
+    border-radius:40px;
 
 }
 
-#searchResults a:hover{
+/* ==========================================================
+   CONVERSATIONS
+========================================================== */
 
-background:#f4f7ff;
+.conversation-item{
+
+    border:none;
+
+    border-radius:18px;
+
+    padding:18px;
+
+    transition:.25s;
+
+    color:#333;
 
 }
-.dropdown-menu{
 
-    border-radius:16px;
+.conversation-item:hover{
+
+    background:#eef4ff;
+
+    transform:translateX(6px);
+
+}
+
+.conversation-item img{
+
+    width:52px;
+
+    height:52px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+}
+
+/* ==========================================================
+   NOTIFICATION DROPDOWN
+========================================================== */
+
+#notificationDropdown{
+
+    border:none;
+
+    border-radius:18px;
 
     overflow:hidden;
 
-}
-
-.dropdown-item{
-
-    transition:.2s;
+    box-shadow:0 15px 40px rgba(0,0,0,.12);
 
 }
 
-.dropdown-item:hover{
+#notificationList{
 
-    background:#f5f8ff;
+    max-height:400px;
+
+    overflow-y:auto;
+
+}
+
+#notificationList .dropdown-item{
+
+    padding:15px;
+
+    transition:.25s;
+
+}
+
+#notificationList .dropdown-item:hover{
+
+    background:#eef4ff;
 
 }
 
 #notificationBadge{
 
-    font-size:10px;
+    min-width:20px;
 
-    min-width:18px;
+    min-height:20px;
+
+    font-size:11px;
+
+    font-weight:700;
+
+}
+
+/* ==========================================================
+   SAVED POSTS
+========================================================== */
+
+.saved-card{
+
+    border-radius:22px;
+
+}
+
+.saved-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+/* ==========================================================
+   TABLES
+========================================================== */
+
+.table{
+
+    background:white;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+}
+
+.table thead{
+
+    background:#f5f7fb;
+
+}
+
+/* ==========================================================
+   ALERTS
+========================================================== */
+
+.alert{
+
+    border:none;
+
+    border-radius:18px;
+
+}
+
+/* ==========================================================
+   FOOTER
+========================================================== */
+
+footer{
+
+    margin-top:60px;
+
+    padding:30px;
+
+    text-align:center;
+
+    color:#777;
+
+}
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media(max-width:992px){
+
+.search-box{
+
+display:none;
+
+}
+
+.profile-stats{
+
+gap:35px;
+
+}
+
+.chat-body{
+
+height:450px;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.navbar-brand{
+
+font-size:24px;
+
+}
+
+.feed-post .btn{
+
+min-width:auto;
+
+font-size:14px;
+
+padding:8px 12px;
+
+}
+
+.post-image{
+
+max-height:350px;
+
+}
+
+.sidebar-card{
+
+margin-bottom:20px;
+
+}
+
+.chat-body{
+
+height:380px;
+
+padding:15px;
+
+}
+
+.my-message,
+
+.other-message{
+
+max-width:90%;
+
+}
+
+}
+
+@media(max-width:576px){
+
+.container{
+
+padding-left:10px;
+
+padding-right:10px;
+
+}
+
+.card{
+
+border-radius:16px;
+
+}
+
+.btn{
+
+font-size:14px;
+
+}
+
+.profile-avatar{
+
+width:110px;
+
+height:110px;
+
+}
+
+.profile-name{
+
+font-size:22px;
+
+}
+
+.profile-stats{
+
+gap:20px;
+
+}
 
 }
